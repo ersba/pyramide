@@ -49,10 +49,25 @@ function shuffle(deck){
 }
 
 function drawPyramid (){
-    for (var i = 1; i < 11; i++)//draw funktioniert!Die ersten 10 karten werden gezogen und als Pyramide hingelegt. man kann nun entweder die ersten 10 karten für weitere wege vergessen oder eben eine Funktion schreiben die diese Karten aus dem Deck entnimmt
+    for (var i = 1; i < 22; i++)//draw funktioniert!Die ersten 10 karten werden gezogen und als Pyramide hingelegt. man kann nun entweder die ersten 10 karten für weitere wege vergessen oder eben eine Funktion schreiben die diese Karten aus dem Deck entnimmt
     {
         document.getElementById("grid-item"+i+"_card").src="assets/img/cards/"+deck[i].Value+"_"+deck[i].Suit+"_white.png";//Hier junge
     }
+
+	for (let k = 1; k <5; ) {//hände
+			for (let j = 1; j <8; ) {//slots
+				for (var i = 22; i < 30; i++)//draw funktioniert!Die ersten 10 karten werden gezogen und als Pyramide hingelegt. man kann nun entweder die ersten 10 karten für weitere wege vergessen oder eben eine Funktion schreiben die diese Karten aus dem Deck entnimmt
+				{
+			document.getElementById("hand"+k+"_slotImg"+j).src="assets/img/cards/"+deck[i].Value+"_"+deck[i].Suit+"_white.png";//Hier junge
+			console.log("hand"+k+"_slotImg"+j+"assets/img/cards/"+deck[i].Value+"_"+deck[i].Suit+"_white.png");
+			j++;
+			}
+			
+		}
+		i=30;
+		k++;
+		j=1;
+	}
 
 }
 	//------------------------------die Funktionen werden ausgeführt---------------------------------------
