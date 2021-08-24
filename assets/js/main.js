@@ -21,21 +21,15 @@ function getDeck() //Hier werden die 2 arrays zusammen geführt
 	{
 		for(var x = 0; x < values.length; x++)
 		{
-			var card = {Value: values[x], Suit: suits[i]};
-			console.log("assets/img/cards/"+values[x]+"_"+suits[i]+"_white.png");
-	// 		for (var i = 0; ;)//vielleicht wird das noch
-    // {
-    //     document.getElementById("grid-item"+i+"_card").src="../img/cards/"+values[x]+"_"+suits[i]+"_white.png";//Hier junge
-    // 	console.log("assets/img/cards/"+values[x]+"_"+suits[i]+"_white.png")	}	
+			var card = {Value: values[x], Suit: suits[i],Img: "assets/img/cards/"+values[x]+"_"+suits[i]+"_white.png"};	//hab hier mal zu jedem element auch noch den passenden Image namen hinzugefügt das erleichtert so einiges
 			deck.push(card);
-			console.log(deck);
 		
 		}
 	}
 
 	return deck;
 }
-getDeck();
+
 
 
 function shuffle(deck){
@@ -51,31 +45,35 @@ function shuffle(deck){
         deck[location2] = tmp;
     }
 }
-shuffle(deck);//hier wird gemischt
 
-    for (var i = 1; i < 11; i++)//draw funktioniert!
+function drawPyramid (){
+    for (var i = 1; i < 22; i++)//draw funktioniert!Die ersten 10 karten werden gezogen und als Pyramide hingelegt. man kann nun entweder die ersten 10 karten für weitere wege vergessen oder eben eine Funktion schreiben die diese Karten aus dem Deck entnimmt
     {
-        document.getElementById("grid-item"+i+"_card").src="assets/img/cards/"+deck[i].Value+"_"+deck[i].Suit+"_white.png";//Hier junge
+		document.getElementById("grid-item"+i+"_card").src=deck[i].Img;
     }
 
-function renderDeck(deck)
-{
-      document.getElementById("deck").innerHTML = "";
-
-	for(let i = 0; i < deck.length; i++)
-	{
-		let card = document.createElement("div");
-		let value = document.createElement("div");
-		let suit = document.createElement("div");
-		card.className = "card";
-		value.className = "value";
-		suit.className = "suit " + deck[i].Suit;
-
-		value.innerHTML = deck[i].Value;
-		card.appendChild(value);
-		card.appendChild(suit);
-
-		document.getElementById("deck").appendChild(card);
+			let k=1;
+			let n= 0;
+			for (let j = 1; j <8; ) {//slots
+				for (let i = 22; i < 54; i++)//die 22ste karte und die 7 darauf folgenden werden der ersten hand zugeteilt usw.
+				{
+			document.getElementById("hand"+k+"_slotImg"+j).src=deck[i].Img;
+			j++;
+			n++; //Zähler variable imme rnach 7 eins weiter springen 
+			if (n==7){ // mit dieser if bedingung kriegt man nun alle Hände gefüllt (keine ahnugn warum das mit der for schleife nicht funktioniert hat)
+				k++;
+				j=1;
+				n=0;
+			}
+			
+			}
+			
+		}
+		
 	}
-}
 
+
+	//------------------------------die Funktionen werden ausgeführt---------------------------------------
+	getDeck();
+	shuffle(deck);//hier wird gemischt
+	drawPyramid ()
